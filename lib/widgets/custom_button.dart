@@ -3,22 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:loginpage/screens/signup_screen.dart';
 
 class WelcomeButton extends StatelessWidget{
-  const WelcomeButton({super.key, required this.buttonText});
+  const WelcomeButton({super.key, required this.buttonText, this.onTap, this.color, this.textColor});
   final String? buttonText;
+  final Widget? onTap;
+  final Color? color;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (e) => const SignUpScreen(),),);
+        Navigator.push(context, MaterialPageRoute(builder: (e) => onTap!,),);
       },
       child: Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(50))
+        padding: const EdgeInsets.all(30.0),
+        decoration: BoxDecoration(
+          color: color!,
+          borderRadius: const BorderRadius.only(topLeft: Radius.circular(50))
         ),
-          child: Text(buttonText!, style: const TextStyle(
+          child: Text(
+            buttonText!,
+            textAlign: TextAlign.center,
+            style: TextStyle(
             fontSize: 20.0,
+            color: textColor!,
             fontWeight: FontWeight.bold
           ),)),
     );
